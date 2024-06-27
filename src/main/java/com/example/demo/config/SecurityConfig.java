@@ -22,8 +22,8 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .cors(cors->cors.disable())
-                .authorizeHttpRequests(auth->auth.regexMatchers("/home/**").authenticated()
-                        .regexMatchers("/auth/login").permitAll()
+                .authorizeHttpRequests(auth->auth.antMatchers("/home/**").authenticated()
+                        .antMatchers("/auth/login").permitAll()
                                 .anyRequest().authenticated())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
